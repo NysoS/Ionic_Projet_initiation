@@ -1,0 +1,7 @@
+{
+  "name": "WApps",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
