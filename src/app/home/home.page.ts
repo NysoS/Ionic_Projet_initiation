@@ -22,13 +22,18 @@ export class HomePage {
   }
 
   async getQuestion(){
-    this.nbQuestion = this.questionService.getNbQuestion();
-    this.questionsGame = await this.questionService.getQuestions(this.intNbQuestion);
+    this.questionService.getQuestions(this.intNbQuestion)
+    .then((questions:any) => {
+      console.log(this.questionService.getNbQuestion());
+      
+      this.nbQuestion = this.questionService.getNbQuestion();
+      this.questionsGame = questions;
+      this.lunchGame = true;
+    })
   }
 
   setPseudo(pseudo){
     this.pseudo = pseudo;
-    this.lunchGame = true;
     this.getQuestion();
   }
 

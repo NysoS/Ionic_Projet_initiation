@@ -4,8 +4,8 @@
     <h4>
       {{question?.question}}
     </h4>
-    <div>
-      <ion-button *ngFor="let answer of answers" (click)="pushAnswer(answer)" [attr.color]="displayError?question?.correct_answer === answer? 'success' : 'danger': 'primary'">{{answer}}</ion-button>
+    <div *ngIf="show">
+      <ion-button *ngFor="let answer of answers" (click)="pushAnswer(answer)" disabled="{{displayError}}" [attr.color]="displayError?question?.correct_answer === answer? 'success' : 'danger': 'primary'">{{answer}}</ion-button>
     </div>
     <div class="ion-justify-content-start">
       <ion-button *ngIf="nextQuestion && !endGame" (click)="goToNextQuestion()">Question suivante</ion-button>

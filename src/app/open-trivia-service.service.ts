@@ -1,9 +1,14 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
 })
 export class OpenTriviaServiceService {
+
+  nbQuestion:number = 0;
+
+  constructor(private http : HttpClient){}
 
   questions:Array<any> = [
     {
@@ -24,14 +29,24 @@ export class OpenTriviaServiceService {
     }
   ]
 
-  constructor() { }
-
-  getQuestions(nbQuestion = null){
-    return this.questions[nbQuestion];
+  async getQuestions(nbQuestion = null){
+    return new Promise((resolve,reject)=>{
+        let data;
+        this.http.get('https://opentdb.com/api.php?amount=10&difficulty=easy').toPromise()
+        .then(
+          (res:any) => {
+            data = res.results;
+            this.nbQuestion = res.results.length;
+          }
+        )
+        .finally(()=>{
+         resolve(data[nbQuestion]);
+        })
+    })
   }
 
   getNbQuestion(){
-    return this.questions.length;
+    return this.nbQuestion;
   }
 }
 
