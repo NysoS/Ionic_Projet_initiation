@@ -12,6 +12,7 @@ export class HomePage {
   lunchGame:boolean = false;
 
   intNbQuestion:number = 0;
+  nbQuestion:number = 0;
   questionsGame:Array<any> = [];
 
   constructor(private questionService : OpenTriviaServiceService) {}
@@ -21,6 +22,7 @@ export class HomePage {
   }
 
   async getQuestion(){
+    this.nbQuestion = this.questionService.getNbQuestion();
     this.questionsGame = await this.questionService.getQuestions(this.intNbQuestion);
   }
 

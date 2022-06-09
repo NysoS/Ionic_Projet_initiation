@@ -29,5 +29,9 @@ export class OpenTriviaServiceService {
   getQuestions(nbQuestion = null){
     return this.questions[nbQuestion];
   }
+
+  getNbQuestion(){
+    return this.questions.length;
+  }
 }
 

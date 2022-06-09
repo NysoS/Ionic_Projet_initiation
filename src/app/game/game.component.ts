@@ -11,6 +11,7 @@ export class GameComponent implements OnInit, OnChanges {
  
   @Input() pseudo!:string;
   @Input() question:any;
+  @Input() nbQuestion:number;
 
   @Output() nextQ = new EventEmitter<any>();
   @Output() finishGame = new EventEmitter<any>();
@@ -20,6 +21,7 @@ export class GameComponent implements OnInit, OnChanges {
   displayError:boolean = false;
   canvas:any;
   endGame:boolean = false;
+  score:number = 0;
 
   constructor(private renderer2: Renderer2,
     private elementRef: ElementRef) {
@@ -55,16 +57,16 @@ export class GameComponent implements OnInit, OnChanges {
 
   pushAnswer(answer){
     if(answer === this.question.correct_answer){
-   
+      this.score++;
       const myConfetti = confetti.create(this.canvas, {
         resize: true, // will fit all screen sizes
         useWorker: true
       });
-    myConfetti({
-      particleCount:600,
-      shapes: ['circle', 'square', 'circle'],
-      spread: 50
-    });
+      myConfetti({
+        particleCount:600,
+        shapes: ['circle', 'square', 'circle'],
+        spread: 50
+      });
     }
     this.displayError = true;
     this.nextQuestion = true;

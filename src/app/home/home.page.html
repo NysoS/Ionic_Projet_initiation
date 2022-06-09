@@ -14,6 +14,6 @@
   </ion-header>
  
   <app-pseudo *ngIf="!lunchGame" (oPseudo)="setPseudo($event)"></app-pseudo>
-  <app-game-component *ngIf="lunchGame" [pseudo]="pseudo" [question]="questionsGame" (nextQ)="newQuestion($event)" (finishGame)="finishGame()"></app-game-component>
+  <app-game-component *ngIf="lunchGame" [pseudo]="pseudo" [question]="questionsGame" [nbQuestion]="nbQuestion" (nextQ)="newQuestion($event)" (finishGame)="finishGame()"></app-game-component>
 
 </ion-content>
