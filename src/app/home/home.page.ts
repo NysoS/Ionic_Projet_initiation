@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { OpenTriviaServiceService } from '../open-trivia-service.service';
 
 @Component({
   selector: 'app-home',
@@ -7,6 +8,33 @@ import { Component } from '@angular/core';
 })
 export class HomePage {
 
-  constructor() {}
+  pseudo:string = null;
+  lunchGame:boolean = false;
+
+  intNbQuestion:number = 0;
+  questionsGame:Array<any> = [];
+
+  constructor(private questionService : OpenTriviaServiceService) {}
+
+  ngOnInit(){
+    this.getQuestion();    
+  }
+
+  async getQuestion(){
+    this.questionsGame = await this.questionService.getQuestions(this.intNbQuestion);
+  }
+
+  setPseudo(pseudo){
+    this.pseudo = pseudo;
+    this.lunchGame = true;
+  }
+
+  newQuestion(){
+    console.log("LA",this.intNbQuestion,this.questionsGame);
+    if(this.questionsGame != null){
+      this.intNbQuestion = this.intNbQuestion+1;
+      this.getQuestion();
+    }
+  }
 
 }

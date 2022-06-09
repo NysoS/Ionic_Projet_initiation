@@ -1,0 +1,20 @@
+<ion-grid>
+  <ion-item>
+    <ion-label position="stacked">Your pseudo</ion-label>
+    <ion-input [(ngModel)]="pseudo"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>Difficulty</ion-label>
+    <ion-select placeholder="Select One" [(ngModel)]="difficultySelected" cancelText="Dismiss" interface="popover">
+      <ion-select-option *ngFor="let difficulty of difficulties" value="{{difficulty}}">{{difficulty}}</ion-select-option>
+    </ion-select>
+  </ion-item>
+  <ion-item>
+    <ion-label>Save information</ion-label>
+    <ion-toggle slot="start" value="pepperoni" checked></ion-toggle>
+  </ion-item>
+  <div *ngIf="isNotValid" class="error">
+    Please inform your pseudo and a difficulty!
+  </div>
+  <ion-button expand="full" class="ion-margin-vertical" (click)="onStart()">Start</ion-button>
+</ion-grid>

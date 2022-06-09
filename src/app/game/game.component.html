@@ -1,0 +1,15 @@
+<ion-grid>
+  <h2 class="ion-text-center">Welcome {{pseudo}}</h2>
+  <div class="ion-text-center">
+    <h4>
+      {{question?.question}}
+    </h4>
+    <div>
+      <ion-button *ngFor="let answer of answers" (click)="pushAnswer(answer)" [attr.color]="displayError?question?.correct_answer === answer? 'success' : 'danger': 'primary'">{{answer}}</ion-button>
+    </div>
+    <div class="ion-justify-content-start">
+      <ion-button *ngIf="nextQuestion && !endGame" (click)="goToNextQuestion()">Question suivante</ion-button>
+      <ion-button *ngIf="endGame">Fini</ion-button>
+    </div>
+  </div>
+</ion-grid>

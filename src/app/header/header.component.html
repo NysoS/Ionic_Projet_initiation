@@ -1,0 +1,20 @@
+<div>
+  header works!
+  <hr>
+  <div>
+    <button (click)="clickMe()">click me!</button>
+    <div [hidden]="isHidden">
+       je suis pas caché
+    </div>
+  </div>
+  <hr>
+  <div>Directive structurelle  *ngIf</div>
+  <div *ngIf="!isHidden">
+    Cette div s'affiche si la condition *ngIf est vrai
+  </div>
+  <hr>
+  <div>Directive structurelle *ngFor</div>
+  <div *ngFor="let fruit of fruits">
+    {{ fruit }}
+  </div>
+</div>
