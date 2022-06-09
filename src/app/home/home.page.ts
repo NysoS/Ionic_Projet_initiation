@@ -17,7 +17,7 @@ export class HomePage {
   constructor(private questionService : OpenTriviaServiceService) {}
 
   ngOnInit(){
-    this.getQuestion();    
+    //this.getQuestion();    
   }
 
   async getQuestion(){
@@ -27,14 +27,19 @@ export class HomePage {
   setPseudo(pseudo){
     this.pseudo = pseudo;
     this.lunchGame = true;
+    this.getQuestion();
   }
 
   newQuestion(){
-    console.log("LA",this.intNbQuestion,this.questionsGame);
     if(this.questionsGame != null){
       this.intNbQuestion = this.intNbQuestion+1;
       this.getQuestion();
     }
+  }
+
+  finishGame(){
+    this.intNbQuestion = 0;
+    this.lunchGame = false;
   }
 
 }

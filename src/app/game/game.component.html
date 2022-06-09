@@ -9,7 +9,7 @@
     </div>
     <div class="ion-justify-content-start">
       <ion-button *ngIf="nextQuestion && !endGame" (click)="goToNextQuestion()">Question suivante</ion-button>
-      <ion-button *ngIf="endGame">Fini</ion-button>
+      <ion-button *ngIf="endGame" (click)="goToMenu()">Fini</ion-button>
     </div>
   </div>
 </ion-grid>

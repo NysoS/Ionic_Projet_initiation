@@ -13,6 +13,7 @@ export class GameComponent implements OnInit, OnChanges {
   @Input() question:any;
 
   @Output() nextQ = new EventEmitter<any>();
+  @Output() finishGame = new EventEmitter<any>();
   
   nextQuestion:boolean = false;
   answers:Array<string> = Array();
@@ -36,7 +37,8 @@ export class GameComponent implements OnInit, OnChanges {
 
   loadAnswers() {
     this.answers = [];
-    if(this.question != null){
+    
+    if(this.question != null || this.question != undefined){
       if (this.question.incorrect_answer) {
         this.question.incorrect_answer.forEach(elt =>{
           this.answers.push(elt);
@@ -72,5 +74,14 @@ export class GameComponent implements OnInit, OnChanges {
     this.displayError = false;
     this.nextQuestion = false;
     let resp = this.nextQ.emit(this.loadAnswers());
+  }
+
+  goToMenu(){
+    this.endGame = false;
+    this.finishGame.emit(this.resetGame());
+  }
+
+  async resetGame(){
+    this.endGame = false;
   }
 }
